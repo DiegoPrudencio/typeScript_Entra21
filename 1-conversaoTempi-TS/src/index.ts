@@ -5,9 +5,9 @@
     var out = document.querySelector("#idOut") as HTMLInputElement;
     var out2 = document.querySelector("#idOut2") as HTMLInputElement;
 
-    let tempCelcius
-    let tempFahrenheit
-    let tempKelvin
+    let tempCelcius: number
+    let tempFahrenheit: number
+    let tempKelvin: number
 
 
     var btnConvert = document.getElementById("idBtnConvert") as HTMLInputElement;
@@ -17,42 +17,40 @@
 
 
         if (celcius.checked) {
-            celciusConvert()
+            celciusConvert(Number(temperatura.value))
         }
         if (kelvin.checked) {
-            kelvinConvert()
+            kelvinConvert(Number(temperatura.value))
         }
         if (fahrenheit.checked) {
-            fahrenheitConvert()
+            fahrenheitConvert(Number(temperatura.value))
         }
     }
 
-    function celciusConvert() {
+    function celciusConvert(temperatura: number){
 
-        let temp: any =  temperatura.value
-        tempFahrenheit = (9 * temp + 160) / 5
+        tempFahrenheit = (9 * temperatura + 160) / 5
         out.value = "A temperatura em Fahrenheit é: " + tempFahrenheit.toFixed(2) + " graus."
-        tempKelvin = (temp + 273.15)
+        tempKelvin = (temperatura + 273.15)
         out2.value = "A temperatura em Kelvin é: " + tempKelvin + " graus."
         
 
     }
 
-    function kelvinConvert() {
+    function kelvinConvert(temperatura: number) {
 
-        let temp: any =  temperatura.value
-        tempCelcius = (5 * (temp - 32) / 9)
-        out.value = "A temperatura em Celcius é: " + tempCelcius.toFixed(2) + " graus."
-        tempKelvin = (((5 * (temp - 32)) / 9) + 273.15)
-        out2.value = "A temperatura em Kelvin é: " + tempKelvin.toFixed(2) + " graus."
+        tempFahrenheit = (((9 * (temperatura - 273.15)) / 5) + 32)
+        out.value = "A temperatura em Fahrenheit é: " + tempFahrenheit.toFixed(2) + " graus."
+        tempCelcius = (temperatura - 273.15)
+        out2.value = "A temperatura em Celcius é: " + tempCelcius.toFixed(2) + " graus."
+
     }
 
-    function fahrenheitConvert() {
+    function fahrenheitConvert(temperatura: number) {
 
-        let temp: any =  temperatura.value
-        tempFahrenheit = (((9 * (temp - 273.15)) / 5) + 32)
-        //((9*((temperatura - 273,15) )/5) + 32).toFixed(2)
-        out.value = "A temperatura em Fahrenheit é: " + tempFahrenheit.toFixed(2) + " graus."
-        tempCelcius = (temp - 273.15)
+        tempKelvin = (((5 * (temperatura - 32)) / 9) + 273.15)
+        out.value = "A temperatura em Kelvin é: " + tempKelvin.toFixed(2) + " graus."
+        tempCelcius = (5 * (temperatura - 32) / 9)
         out2.value = "A temperatura em Celcius é: " + tempCelcius.toFixed(2) + " graus."
+
     }

@@ -11,34 +11,30 @@ let tempKelvin;
 var btnConvert = document.getElementById("idBtnConvert");
 btnConvert.onclick = function () {
     if (celcius.checked) {
-        celciusConvert();
+        celciusConvert(Number(temperatura.value));
     }
     if (kelvin.checked) {
-        kelvinConvert();
+        kelvinConvert(Number(temperatura.value));
     }
     if (fahrenheit.checked) {
-        fahrenheitConvert();
+        fahrenheitConvert(Number(temperatura.value));
     }
 };
-function celciusConvert() {
-    let temp = temperatura.value;
-    tempFahrenheit = (9 * temp + 160) / 5;
+function celciusConvert(temperatura) {
+    tempFahrenheit = (9 * temperatura + 160) / 5;
     out.value = "A temperatura em Fahrenheit é: " + tempFahrenheit.toFixed(2) + " graus.";
-    tempKelvin = (temp + 273.15);
+    tempKelvin = (temperatura + 273.15);
     out2.value = "A temperatura em Kelvin é: " + tempKelvin + " graus.";
 }
-function kelvinConvert() {
-    let temp = temperatura.value;
-    tempCelcius = (5 * (temp - 32) / 9);
-    out.value = "A temperatura em Celcius é: " + tempCelcius.toFixed(2) + " graus.";
-    tempKelvin = (((5 * (temp - 32)) / 9) + 273.15);
-    out2.value = "A temperatura em Kelvin é: " + tempKelvin.toFixed(2) + " graus.";
-}
-function fahrenheitConvert() {
-    let temp = temperatura.value;
-    tempFahrenheit = (((9 * (temp - 273.15)) / 5) + 32);
-    //((9*((temperatura - 273,15) )/5) + 32).toFixed(2)
+function kelvinConvert(temperatura) {
+    tempFahrenheit = (((9 * (temperatura - 273.15)) / 5) + 32);
     out.value = "A temperatura em Fahrenheit é: " + tempFahrenheit.toFixed(2) + " graus.";
-    tempCelcius = (temp - 273.15);
+    tempCelcius = (temperatura - 273.15);
+    out2.value = "A temperatura em Celcius é: " + tempCelcius.toFixed(2) + " graus.";
+}
+function fahrenheitConvert(temperatura) {
+    tempKelvin = (((5 * (temperatura - 32)) / 9) + 273.15);
+    out.value = "A temperatura em Kelvin é: " + tempKelvin.toFixed(2) + " graus.";
+    tempCelcius = (5 * (temperatura - 32) / 9);
     out2.value = "A temperatura em Celcius é: " + tempCelcius.toFixed(2) + " graus.";
 }
