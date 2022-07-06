@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Temperatura</title>
+    </head>
+    <body>
+        <main>
+            <div class="boxes">
+                <img class="image" src="./termometro.jpeg" alt="foto do termometro">
+            </div>
+            <div class="boxes">
+                <div class="box">
+                    <form action="">
+                        <fieldset>
+                            <div>
+                                <h1 class="titulo">
+                                    Temperatura
+                                </h1>
+                            </div>
+                            
+                            <div class="divLbTemperatura">
+                                <label for="idLbTemperatura">Temperatura (C°):</label>
+                                <input type="number" name="nmTemperatura" id="idTemperatura" step="0.1">
+                            </div>
+                            <div class="divLbDataIn">
+                                <label for="idLbDataIn">Data:</label>
+                                <input type="date" name="nmDataIn" id="idDataIn">
+                            </div>
+                            <div class="divBtn">
+                                <input type="button" class="btn" name="nmBtnCadastrar" id="idBtnCadastrar" value="Cadastrar">
+                                <input type="button" class="btn" name="nmBtnLimpar" id="idBtnLimpar" value="Limpar">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="box">
+                    <form action="">
+                        <fieldset>
+                            <div>
+                                <h1 class="titulo">
+                                    Verificar temperatura
+                                </h1>
+                            </div>
+                            <div class="divLbDataOut">
+                                <label for="idLbDataCheck">Data para verificação:</label>
+                                <input type="date" name="nmDataCheck" id="idDataCheck">
+                            </div>
+                            <div class="divBtn">
+                                <input type="button" class="btn" name="nmBtnVerificar" id="idBtnVerificar" value="Verificar Temperatura">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="out" hidden>
+                <div>
+                    <output id="idOut1"></output>
+                </div>
+                <div>
+                    <output id="idOut2"></output>
+                </div>
+            </div>
+            <script>
+
+
+            //Declaração de variáveis globais 
+            var temperaturas = []
+            var datas = []
+            //var out1 = document.getElementById("idOut").value
+
+            //Variáveis botões
+            var btnCadastrar = document.getElementById("idBtnCadastrar")
+            var btnLimpar = document.getElementById("idBtnLimpar")
+            var btnVerificarTemp = document.getElementById("idBtnVerificar")
+
+            /*
+             * Rotina de Inicialização e verificação das informações
+             * Descrição: Inicializa variáveis globais e tela 
+             * Parâmetros: none
+             * Retorno: none
+             */            
+            btnCadastrar.onclick = function(){
+                let temperatura = document.getElementById("idTemperatura").value
+                let data = document.getElementById("idDataIn").value
+                
+
+                //Chama as funções de validação
+                let validarTemperatura = temperaturaValida(temperatura)
+                let validarData = dataValida(data)
+
+                if (validarTemperatura && validarData) {
+
+                    temperaturas.push(temperatura)
+                    datas.push(data)
+                }
+
+                document.getElementById("idTemperatura").value = ""
+                document.getElementById("idDataIn").value = ""
+
+                    console.log(temperaturas);
+                    console.log(datas);
+            }
+
+            btnLimpar.onclick = function(){
+                document.getElementById("idTemperatura").value = ""
+                document.getElementById("idDataIn").value = ""
+            }
+
+            //Função para verificar temperatura
+            
+            btnVerificarTemp.onclick = function(){
+                document.querySelector(".out").hidden = false
+                let dataCheck = document.getElementById("idDataCheck").value
+                let validarDataCheck = dataValidaCheck(dataCheck)
+
+                for (let i = 0; i < datas.length; i++) {
+                    let indexAux
+                    if (datas[i] == dataCheck) {
+                        indexAux = i
+                    }
+                    for (let j = 0; j < temperaturas.length; j++) {
+                        if (indexAux == j) {
+                            document.getElementById("idOut1").value = "Data: " + dataCheck
+                            document.getElementById("idOut2").value = "Temperatura: " + temperaturas[j] + " C°."
+                            document.getElementById("idDataCheck").value = ""
+                        }
+                        
+                    }
+                }
+                
+            }
+
+            //Validação das informações adicionadas
+
+            function temperaturaValida(temperatura) {
+                if (temperatura == "" || temperatura == " ") {
+                    alert("Temperatura Inválida")
+                    document.getElementById("idTemperatura").value = ""
+                    document.getElementById("idTemperatura").focus()
+                    return false
+                }
+                return true
+            }
+
+            function dataValida(data) {
+                if (data == "" || data == " ") {
+                    alert("Data Inválida")
+                    document.getElementById("idDataIn").value = ""
+                    document.getElementById("idDataIn").focus()
+                    return false
+                }
+                return true
+            }
+
+            function dataValidaCheck(dataCheck) {
+                if (dataCheck == "" || dataCheck == " ") {
+                    alert("Data Inválida")
+                    document.getElementById("idDataCheck").value = ""
+                    document.getElementById("idDataCheck").focus()
+                    return false
+                }
+                return true
+            }
+
+            </script>
+        </main>
+    </body>
+</html>
