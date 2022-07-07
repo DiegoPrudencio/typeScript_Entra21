@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/index.js" defer></script>
+    <title>Temperatura</title>
+</head>
+
+<body>
+    <main>
+        <form action="">
+            <fieldset>
+                <legend>Temperatura</legend>
+                <br><br>
+                <label for="idLbTemp">Insira a temperatura e informa sua unidade de medida:</label>
+                <br><br>
+                <input type="number" name="nmTemp" id="idTemp" step="0.1">
+                <br><br>
+                <input type="radio" name="nmTemperaturas" id="idCelcius" checked>
+                <label for="idCelcius">Celcius</label>
+                <input type="radio" name="nmTemperaturas" id="idFahrenheit">
+                <label for="idFahrenheit">Fahrenheit</label>
+                <input type="radio" name="nmTemperaturas" id="idKelvin">
+                <label for="idKelvin">Kelvin</label>
+                <br><br>
+                <input type="button" name="nmBtnConvert" id="idBtnConvert" value="Converter">
+                <br><br>
+                <output id="idOut"></output>
+                <br><br>
+                <output id="idOut2"></output>
+            </fieldset>
+        </form>
+    </main>
+
+</body>
+
+</html>
